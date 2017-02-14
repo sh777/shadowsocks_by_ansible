@@ -8,10 +8,11 @@
     - python-m2crypto
     - python-pip
     - qrencode
+    
+    shadowsocks_location: "/home/shadowsocks"
+    shadowsocks_password_file: "{{ shadowsocks_location }}/shadowsocks-password.txt"
+    shadowsocks_qr_code: "{{ shadowsocks_location }}/shadowsocks-qr-code.png"
 
-shadowsocks_location: "/home/shadowsocks"
-shadowsocks_password_file: "{{ shadowsocks_location }}/shadowsocks-password.txt"
-shadowsocks_qr_code: "{{ shadowsocks_location }}/shadowsocks-qr-code.png"
   
   tasks: 
   - name: Install Shadowsocks dependencies
