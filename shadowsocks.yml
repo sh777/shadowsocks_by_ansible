@@ -17,7 +17,7 @@
   tasks: 
   - name: Install Shadowsocks dependencies
     apt: pkg={{ item }}
-    with_items: shadowsocks_dependencies
+    with_items: "{{ shadowsocks_dependencies }}"
 
   - name: Add the Shadowsocks user
     user: name=shadowsocks
