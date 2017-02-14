@@ -54,16 +54,9 @@
               mode=640
     notify: Restart Shadowsocks
 
-  - name: Generate Shadowsocks init script
-    template: src=shadowsocks-init.j2
-              dest=/etc/init.d/shadowsocks
-              owner=root
-              group=root
-              mode=755
+  - name: enable automatic start on system boot,
+    command: sudo sed -i '/exit 0/ i /usr/bin/python /usr/local/bin/ssserver -c {{ shadowsocks_location }}/config.json -d start' /etc/rc. local
 
-  - name: Enable the Shadowsocks init script so the service will start at boot
-    command: update-rc.d shadowsocks defaults
-             creates=/etc/rc0.d/K01shadowsocks
 
   - name: Generate the Shadowsocks QR code
     # The ss:// URI format is documented here:
