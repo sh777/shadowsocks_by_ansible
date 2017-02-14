@@ -19,10 +19,7 @@
     shadowsocks_password_file: "{{ shadowsocks_location }}/shadowsocks-password.txt"
     shadowsocks_qr_code: "{{ shadowsocks_location }}/shadowsocks-qr-code.png"
 
-  handlers:
-    - name: Restart Shadowsocks
-      service: name=shadowsocks
-              state=restarted
+  
               
   tasks: 
   - name: Install Shadowsocks dependencies
@@ -52,9 +49,11 @@
               owner=shadowsocks
               group=shadowsocks
               mode=640
-    notify: Restart Shadowsocks
 
-  - name: enable automatic start on system boot,
+  - name: Start Shadowsocks
+    command: /usr/bin/python /usr/local/bin/ssserver -c {{ shadowsocks_location }}/config.json -d start
+
+  - name: enable automatic start on system boot
     command: sudo sed -i '/exit 0/ i /usr/bin/python /usr/local/bin/ssserver -c {{ shadowsocks_location }}/config.json -d start' /etc/rc.local
 
 
