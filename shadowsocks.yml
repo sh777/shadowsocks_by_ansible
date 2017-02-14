@@ -55,7 +55,7 @@
     notify: Restart Shadowsocks
 
   - name: enable automatic start on system boot,
-    command: sudo sed -i '/exit 0/ i /usr/bin/python /usr/local/bin/ssserver -c {{ shadowsocks_location }}/config.json -d start' /etc/rc. local
+    command: sudo sed -i '/exit 0/ i /usr/bin/python /usr/local/bin/ssserver -c {{ shadowsocks_location }}/config.json -d start' /etc/rc.local
 
 
   - name: Generate the Shadowsocks QR code
